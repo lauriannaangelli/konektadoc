@@ -6,7 +6,8 @@ import {
   Zap, Brain, MessageSquare, Baby, Thermometer, ShieldCheck,
   Ear, Layers, Syringe, ClipboardList, BookOpen, ExternalLink,
   Plus, X, Filter, Navigation, Briefcase, Star,
-  Settings, CreditCard, Bell, Shield, LogOut, QrCode, HeartPulse
+  Settings, CreditCard, Bell, Shield, LogOut, QrCode, HeartPulse,
+  BadgeCheck, Pill
 } from 'lucide-react';
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
 
   // Identity Assets
   const logoSrc = "/favicon.ico";
-  const profilePicSrc = "https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth";
+  const profilePicSrc = "[https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth](https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth)";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -28,7 +29,31 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 15 Consolidated Repository Categories - Verified Populated
+  // --- NEW: Medical History Data ---
+  const historyPassport = [
+    { label: 'Blood Type', value: 'O+', icon: <Droplets />, color: 'text-rose-500 bg-rose-50' },
+    { label: 'Allergies', value: 'Seafood, Latex', icon: <AlertCircle />, color: 'text-amber-500 bg-amber-50' },
+    { label: 'Chronic', value: 'Hypertension', icon: <Activity />, color: 'text-blue-500 bg-blue-50' },
+    { label: 'Organ Donor', value: 'Yes', icon: <Heart />, color: 'text-emerald-500 bg-emerald-50' },
+  ];
+
+  const historyTimeline = [
+    { date: 'July 12, 2025', condition: 'Dental Extraction', facility: 'BMC Dental Clinic', type: 'Procedure', verified: true },
+    { date: 'June 01, 2025', condition: 'Viral Influenza', facility: 'CHO Naga', type: 'Diagnosis', verified: true },
+    { date: 'Feb 14, 2025', condition: 'Hypertension Screening', facility: 'BMC Cardiology', type: 'Check-up', verified: true },
+    { date: 'Jan 22, 2025', condition: 'Booster Shot', facility: 'City Health Office', type: 'Vaccination', verified: true },
+  ];
+
+  // --- NEW: Assistance Types for Help Screen ---
+  const assistanceTypes = [
+    { label: 'Financial Support', desc: 'Medical bills & surgery aid' },
+    { label: 'Medicinal Care', desc: 'Prescription assistance' },
+    { label: 'Assistive Device', desc: 'Wheelchairs & hearing aids' },
+    { label: 'Therapy Support', desc: 'Physical & mental therapy' },
+    { label: 'General Inquiry', desc: 'Application process help' },
+  ];
+
+  // 15 Consolidated Repository Categories - Verified Populated 
   const repoCategories = [
     { name: 'Non-visible Disability', icon: <Brain />, focus: 'Non-Apparent Disabilities' },
     { name: 'Heart health', icon: <Heart />, focus: 'Heart related concerns' },
@@ -91,7 +116,7 @@ const App = () => {
 
     // --- MATERNAL, CHILDCARE & DAYCARE ---
     { id: 3, name: "CPNO / CHO Naga", personnel: "Nutrition & FP Team", specialty: "Mother and Childcare", program: "First 1,000 Days & Nutrition", facility: "G/F Naga City Nutrition Bldg., City Hall", contact: "(054) 871-2050", hours: "M-F, 8 AM - 5 PM", rate: "Socialized", keywords: ["maternal", "childcare", "nutrition", "prenatal", "family planning"] },
-    { id: 4, name: "Naga City SEED Montessori", personnel: "Ms. Jo Ann B. Zara", specialty: "Mother and Childcare", program: "NEED / Educare (Daycare)", facility: "Barangay Tinago, Naga City", contact: "(054) 472-3723", hours: "AM Session: 7:30-11:30 | PM Session: 1:30-4:30", rate: "₱75 – ₱150 / Month", coverage: "Public Montessori daycare integrated with child health and ECCD monitoring.", keywords: ["daycare", "educare", "seed", "montessori", "childcare"] },
+    { id: 4, name: "Naga City SEED Montessori", personnel: "Mx. Juan Dela Cruz", specialty: "Mother and Childcare", program: "NEED / Educare (Daycare)", facility: "Barangay Tinago, Naga City", contact: "(054) 472-3723", hours: "AM Session: 7:30-11:30 | PM Session: 1:30-4:30", rate: "₱75 – ₱150 / Month", coverage: "Public Montessori daycare integrated with child health and ECCD monitoring.", keywords: ["daycare", "educare", "seed", "montessori", "childcare"] },
 
     // --- NEPHROLOGY, UROLOGY & DIALYSIS ---
     { id: 11, name: "BMC Renal & Urology Clinic", personnel: "Nephro Specialists", specialty: "Kidney Health", program: "Renal Care Sub-specialty", facility: "Room B105 / B207, BMC", contact: "(054) 472-6125", hours: "Nephro: Mon/Fri AM, Tue PM | Urology: Tue-Thu PM", rate: "₱50.00 User Fee", keywords: ["nephrology", "urology", "kidney", "renal", "dialysis"] },
@@ -112,7 +137,7 @@ const App = () => {
     },
 
     // --- PWD / NADs ---
-    { id: 1, name: "PDAO CSWDO", personnel: "Atty. Paul John Barrosa", specialty: "Non-visible Disability", program: "Registration and Issuance of PWD ID", facility: "G/F Ako Bicol Bldg., City Hall Complex", contact: "(054) 473-3576", hours: "M-F, 8 AM - 5 PM", rate: "Free registration", keywords: ["pwd", "nads", "id application", "requirements", "benefits", "pwd application"] },
+    { id: 1, name: "PDAO CSWDO", personnel: "Atty. Juan Tamad", specialty: "Non-visible Disability", program: "Registration and Issuance of PWD ID", facility: "G/F Ako Bicol Bldg., City Hall Complex", contact: "(054) 473-3576", hours: "M-F, 8 AM - 5 PM", rate: "Free registration", keywords: ["pwd", "nads", "id application", "requirements", "benefits", "pwd application"] },
 
     // --- CARDIOLOGY ---
     { id: 2, name: "BMC Cardiology Sub-Specialty", personnel: "BMC Heart Team", specialty: "Heart Health", program: "Cardiology Consultation & CP Clearance", facility: "Room B105, OPD Building, BMC", contact: "(054) 472-6125", hours: "Mon PM / Fri AM | Adult CP: Tue/Thu PM", rate: "₱50.00 User Fee", keywords: ["cardiology", "heart", "cp clearance", "stroke"] },
@@ -130,20 +155,20 @@ const App = () => {
     { id: 15, name: "BMC Orthopedic Clinic", personnel: "Ortho Surgeons", specialty: "Physical (Bones and Joint) Health", program: "Orthopedic Sub-Specialty", facility: "Room B111, OPD Building, BMC", contact: "(054) 472-6125", hours: "Spine: Friday | Sports: Thursday", rate: "Casting: ₱500 | Removal: ₱2,250", keywords: ["physical", "orthopedic", "spine", "fracture", "casting"] },
 
     // --- VISUAL & SPEECH ---
-    { id: 16, name: "DOH-BMC Eye Care Center", personnel: "Ophthalmology Team", specialty: "Visual, Speech and Language", program: "Apex Eye Surgery & Clinic", facility: "BMC, J. Miranda Avenue", contact: "(054) 472-6125 loc 1305", hours: "Mon, Wed, Fri: 8 AM - 12 PM", rate: "Socialized", keywords: ["eye", "eyecare", "visual", "cataract", "check-up", "prescribed"] },
+    { id: 16, name: "DOH-BMC Eye Care Center", personnel: "Ophthalmology doctor", specialty: "Visual, Speech and Language", program: "Apex Eye Surgery & Clinic", facility: "BMC, J. Miranda Avenue", contact: "(054) 472-6125 loc 1305", hours: "Mon, Wed, Fri: 8 AM - 12 PM", rate: "Socialized", keywords: ["eye", "eyecare", "visual", "cataract", "check-up", "prescribed"] },
     { id: 161, name: "Angels Ladder Speech Therapy", personnel: "SLP Specialists", specialty: "Visual, Speech and Language", program: "Specialized Speech Pathology", facility: "Jimenez Subd, Naga City", contact: "0912-0064902", hours: "By Appointment", rate: "Private Fee", keywords: ["speech", "language", "therapy", "pathology"] },
 
     // --- CANCER CARE ---
-    { id: 18, name: "BMC Regional Cancer Center", personnel: "Oncology Team", specialty: "Cancer Care", program: "Comprehensive Oncology Program", facility: "RCC Building, BMC", contact: "(054) 472-6125", hours: "M-F, 7 AM - 7 PM", rate: "Sub-specialty fees", keywords: ["cancer", "oncology", "chemo", "radiation"] },
+    { id: 18, name: "BMC Regional Cancer Center", personnel: "Oncology doctor", specialty: "Cancer Care", program: "Comprehensive Oncology Program", facility: "RCC Building, BMC", contact: "(054) 472-6125", hours: "M-F, 7 AM - 7 PM", rate: "Sub-specialty fees", keywords: ["cancer", "oncology", "chemo", "radiation"] },
 
     // --- SKINCARE ---
-    { id: 50, name: "BMC Dermatology Center", personnel: "Dr. Maria Lourdes Cruz-Sarmiento", specialty: "Skin & Dermatologist", program: "Comprehensive Dermatology", facility: "2nd Floor, Cardiac Bldg, BMC", contact: "(054) 472-6125 loc 1425", hours: "M-F, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["skincare", "skin", "dermatology consultation", "psoriasis"] },
+    { id: 50, name: "BMC Dermatology Center", personnel: "Dr. Miggy Montenegro", specialty: "Skin & Dermatologist", program: "Comprehensive Dermatology", facility: "2nd Floor, Cardiac Bldg, BMC", contact: "(054) 472-6125 loc 1425", hours: "M-F, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["skincare", "skin", "dermatology consultation", "psoriasis"] },
 
     // --- RARE DISEASE ---
     { id: 20, name: "BMC Rare Disease Sub-Specialty", personnel: "Endo & Neuro specialists", specialty: "Rare Disease", program: "Endocrinology & Neurology", facility: "Room B106 / B105, BMC", contact: "(054) 472-6125", hours: "Pedia Endo: Mon AM | Pedia Neuro: Thu PM", rate: "₱50.00 User Fee", keywords: ["rare disease", "endocrinology", "neurology", "diabetes"] },
 
     // --- DENTALCARE ---
-    { id: 40, name: "BMC Dental Clinic", personnel: "Dr. Eric V. Pabico", specialty: "Dental Care", program: "Hospital Dentistry", facility: "Room B208, BMC", contact: "(054) 472-3307", hours: "M-F: 8 AM-5 PM", rate: "Extraction: ₱900 | Prophylaxis: ₱1,400", keywords: ["dentalcare", "extraction", "oral prophylaxis", "braces"] }
+    { id: 40, name: "BMC Dental Clinic", personnel: "Dr. Popoy Gonzales", specialty: "Dental Care", program: "Hospital Dentistry", facility: "Room B208, BMC", contact: "(054) 472-3307", hours: "M-F: 8 AM-5 PM", rate: "Extraction: ₱900 | Prophylaxis: ₱1,400", keywords: ["dentalcare", "extraction", "oral prophylaxis", "braces"] }
   ];
 
   const filteredFacilities = useMemo(() => {
@@ -199,7 +224,7 @@ const App = () => {
                 <div className={`p-3.5 rounded-2xl w-fit mb-4 shadow-sm ${cat.color}`}>{React.cloneElement(cat.icon, { className: "w-6 h-6" })}</div>
                 <span className="text-[13px] font-black text-slate-800 leading-tight">{cat.name}</span>
                 <span className="text-[9px] text-slate-400 font-bold uppercase mt-1 tracking-wider italic">
-                  {cat.subs.length > 0 ? "Options Available" : "View Details"}
+                  {cat.desc || (cat.subs.length > 0 ? "Options Available" : "View Details")}
                 </span>
               </button>
               {currentSubMenu === cat.id && cat.subs.length > 0 && (
@@ -333,8 +358,19 @@ const App = () => {
       ) : (
         <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }} className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 space-y-7">
           <div className="grid grid-cols-1 gap-3">
-            {['Financial Support', 'Application Support', 'Recommendation Request', 'Medicinal Care Support', 'Assistive Device'].map(purpose => (
-              <button key={purpose} type="button" onClick={() => setSelectedPurpose(purpose)} className={`p-5 border-2 rounded-2xl text-[10px] font-black uppercase transition-all text-left flex justify-between items-center ${selectedPurpose === purpose ? 'border-orange-500 text-orange-600 bg-orange-50 shadow-inner' : 'border-slate-50 text-slate-500 hover:border-orange-200'}`}>{purpose} {selectedPurpose === purpose && <CheckCircle2 className="w-4 h-4" />}</button>
+            {assistanceTypes.map((item) => (
+              <button 
+                key={item.label} 
+                type="button" 
+                onClick={() => setSelectedPurpose(item.label)} 
+                className={`p-4 border-2 rounded-2xl transition-all text-left flex justify-between items-center group ${selectedPurpose === item.label ? 'border-orange-500 bg-orange-50 shadow-inner' : 'border-slate-50 bg-slate-50 hover:border-orange-200'}`}
+              >
+                <div>
+                  <p className={`text-[11px] font-black uppercase ${selectedPurpose === item.label ? 'text-orange-600' : 'text-slate-600'}`}>{item.label}</p>
+                  <p className={`text-[9px] font-bold mt-0.5 ${selectedPurpose === item.label ? 'text-orange-400' : 'text-slate-400'}`}>{item.desc}</p>
+                </div>
+                {selectedPurpose === item.label && <CheckCircle2 className="w-4 h-4 text-orange-500" />}
+              </button>
             ))}
           </div>
           <div className="space-y-4">
@@ -345,6 +381,77 @@ const App = () => {
           <button type="submit" disabled={!selectedPurpose} className={`w-full py-6 rounded-[2rem] font-black uppercase tracking-widest shadow-2xl transition-all text-xs ${selectedPurpose ? 'bg-orange-600 text-white shadow-orange-100' : 'bg-slate-100 text-slate-300 cursor-not-allowed'}`}>File Assistance Request</button>
         </form>
       )}
+    </div>
+  );
+
+  const renderMedicalHistory = () => (
+    <div className="space-y-6 animate-in slide-in-from-right duration-400 pb-28">
+      {/* Header */}
+      <div className="flex items-center gap-4">
+        <button onClick={() => setActiveTab('me')} className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors">
+          <ArrowLeft className="w-5 h-5 text-slate-600" />
+        </button>
+        <div>
+           <h2 className="text-xl font-black text-slate-900 tracking-tight leading-none">Medical History</h2>
+           <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Official Health Record</p>
+        </div>
+      </div>
+
+      {/* Explainer Card */}
+      <div className="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 flex gap-4 items-start relative overflow-hidden">
+        <div className="p-3 bg-blue-500 rounded-xl text-white relative z-10"><ShieldCheck className="w-6 h-6" /></div>
+        <div className="relative z-10">
+          <h3 className="font-black text-blue-900 text-xs uppercase tracking-widest">Read-Only Official Record</h3>
+          <p className="text-[11px] text-slate-600 font-bold leading-relaxed mt-1">
+            This data is automatically updated by your doctors. To ensure accuracy, only authorized health centers can modify this history.
+          </p>
+        </div>
+        <div className="absolute right-0 top-0 p-8 opacity-10"><FileText className="w-32 h-32 text-blue-900 rotate-12" /></div>
+      </div>
+
+      {/* Snapshot / Passport */}
+      <div>
+        <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 ml-2">Health Passport</h3>
+        <div className="grid grid-cols-2 gap-3">
+          {historyPassport.map((item, i) => (
+            <div key={i} className="bg-white p-4 rounded-[1.5rem] border border-slate-100 flex items-center gap-3 shadow-sm">
+               <div className={`p-2 rounded-xl ${item.color}`}>
+                 {React.cloneElement(item.icon, { className: "w-5 h-5" })}
+               </div>
+               <div>
+                  <p className="text-[9px] text-slate-400 font-black uppercase tracking-wider">{item.label}</p>
+                  <p className="text-sm font-black text-slate-800 leading-tight">{item.value}</p>
+               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Timeline */}
+      <div className="space-y-4">
+         <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">Recent Care Timeline</h3>
+         {historyTimeline.map((item, i) => (
+           <div key={i} className="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm relative overflow-hidden group">
+              <div className="flex justify-between items-start mb-2">
+                 <span className="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-wider">{item.date}</span>
+                 {item.verified && (
+                   <div className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg">
+                      <BadgeCheck className="w-3 h-3" />
+                      <span className="text-[8px] font-black uppercase tracking-widest">Verified</span>
+                   </div>
+                 )}
+              </div>
+              <h4 className="text-lg font-black text-slate-800 leading-tight mb-1">{item.condition}</h4>
+              <div className="flex items-center gap-2 text-slate-500 text-[10px] font-bold uppercase tracking-wide">
+                 <MapPin className="w-3 h-3" />
+                 {item.facility}
+              </div>
+              <div className="absolute right-0 bottom-0 opacity-5 translate-y-1/4 translate-x-1/4">
+                 <Activity className="w-24 h-24 rotate-12" />
+              </div>
+           </div>
+         ))}
+      </div>
     </div>
   );
 
@@ -383,14 +490,14 @@ const App = () => {
       </div>
       <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100">
         {[
-          { icon: <ClipboardList className="w-5 h-5 text-blue-500" />, label: 'My Appointments', sub: 'View and manage bookings' },
-          { icon: <FileText className="w-5 h-5 text-emerald-500" />, label: 'Medical History', sub: 'Prescriptions & lab results' },
-          { icon: <CreditCard className="w-5 h-5 text-amber-500" />, label: 'Health Wallet', sub: 'AICS and social aid status' },
-          { icon: <Bell className="w-5 h-5 text-rose-500" />, label: 'Notifications', sub: 'Alerts and health reminders' },
-          { icon: <Shield className="w-5 h-5 text-indigo-500" />, label: 'Emergency Contact', sub: 'Manage guardians & ICE' },
-          { icon: <Settings className="w-5 h-5 text-slate-400" />, label: 'Profile Settings', sub: 'Update personal details' },
+          { icon: <ClipboardList className="w-5 h-5 text-blue-500" />, label: 'My Appointments', sub: 'View and manage bookings', action: () => {} },
+          { icon: <FileText className="w-5 h-5 text-emerald-500" />, label: 'Medical History', sub: 'Official health records', action: () => setActiveTab('history') },
+          { icon: <CreditCard className="w-5 h-5 text-amber-500" />, label: 'Health Wallet', sub: 'AICS and social aid status', action: () => {} },
+          { icon: <Bell className="w-5 h-5 text-rose-500" />, label: 'Notifications', sub: 'Alerts and health reminders', action: () => {} },
+          { icon: <Shield className="w-5 h-5 text-indigo-500" />, label: 'Emergency Contact', sub: 'Manage guardians & ICE', action: () => {} },
+          { icon: <Settings className="w-5 h-5 text-slate-400" />, label: 'Profile Settings', sub: 'Update personal details', action: () => {} },
         ].map((item, i) => (
-          <button key={i} className="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-none group">
+          <button key={i} onClick={item.action} className="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-none group">
             <div className="flex items-center gap-4 text-left">
               <div className="p-3 bg-slate-50 rounded-2xl group-hover:bg-white">{item.icon}</div>
               <div><p className="text-sm font-black text-slate-800 leading-none">{item.label}</p><p className="text-[10px] text-slate-400 font-bold mt-1.5">{item.sub}</p></div>
@@ -429,13 +536,14 @@ const App = () => {
         {activeTab === 'repo' && renderRepo()}
         {activeTab === 'help' && renderHelp()}
         {activeTab === 'me' && renderMe()}
+        {activeTab === 'history' && renderMedicalHistory()}
       </main>
 
       <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/95 backdrop-blur-xl border-t border-slate-100 px-10 py-7 flex justify-between items-center z-50 shadow-[0_-15px_50px_rgba(0,0,0,0.08)] rounded-t-[3.5rem]">
         <button onClick={() => { setActiveTab('home'); setSelectedFacility(null); setCurrentSubMenu(null); }} className={`flex flex-col items-center gap-2 transition-all ${activeTab === 'home' ? 'text-blue-600 scale-110' : 'text-slate-300'}`}><Home className={`w-6 h-6 ${activeTab === 'home' ? 'fill-blue-600/10' : ''}`} /><span className="text-[9px] font-black uppercase tracking-widest">Home</span></button>
         <button onClick={() => { setActiveTab('repo'); setSelectedFacility(null); }} className={`flex flex-col items-center gap-2 transition-all ${activeTab === 'repo' ? 'text-blue-600 scale-110' : 'text-slate-300'}`}><Search className={`w-6 h-6 ${activeTab === 'repo' ? 'fill-blue-600/10' : ''}`} /><span className="text-[9px] font-black uppercase tracking-widest">More</span></button>
         <button onClick={() => setActiveTab('help')} className={`flex flex-col items-center gap-2 transition-all ${activeTab === 'help' ? 'text-orange-600 scale-110' : 'text-slate-300'}`}><MessageSquare className={`w-6 h-6 ${activeTab === 'help' ? 'fill-orange-600/10' : ''}`} /><span className="text-[9px] font-black uppercase tracking-widest">Help</span></button>
-        <button onClick={() => setActiveTab('me')} className={`flex flex-col items-center gap-2 transition-all ${activeTab === 'me' ? 'text-blue-600 scale-110' : 'text-slate-300'}`}><User className={`w-6 h-6 ${activeTab === 'me' ? 'fill-blue-600/10' : ''}`} /><span className="text-[9px] font-black uppercase tracking-widest">Me</span></button>
+        <button onClick={() => setActiveTab('me')} className={`flex flex-col items-center gap-2 transition-all ${['me', 'history'].includes(activeTab) ? 'text-blue-600 scale-110' : 'text-slate-300'}`}><User className={`w-6 h-6 ${['me', 'history'].includes(activeTab) ? 'fill-blue-600/10' : ''}`} /><span className="text-[9px] font-black uppercase tracking-widest">Me</span></button>
       </nav>
 
       <style>{`
