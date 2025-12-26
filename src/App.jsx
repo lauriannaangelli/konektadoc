@@ -30,27 +30,27 @@ const App = () => {
 
   // 15 Consolidated Repository Categories - Verified Populated
   const repoCategories = [
-    { name: 'NADs (Non-Apparent Disabilities)', icon: <Brain />, focus: 'Neuro/Profiling' },
-    { name: 'Cardiology', icon: <Heart />, focus: 'Heart Health' },
-    { name: 'Maternal and Childcare', icon: <Baby />, focus: 'Nutrition & Educare' },
-    { name: 'Infectious Disease & Vaccines', icon: <ShieldCheck />, focus: 'TB, Rabies & EPI' },
-    { name: 'Reproductive', icon: <Activity />, focus: 'Teen Wellness / FP' },
-    { name: 'Pulmonology', icon: <Activity />, focus: 'Respiratory' },
-    { name: 'Nephrology & Urology', icon: <Droplets />, focus: 'Kidney & Dialysis' },
-    { name: 'Hearing', icon: <Ear />, focus: 'ENT Specialist' },
-    { name: 'Mental & Psychosocial', icon: <MessageSquare />, focus: 'Psychiatry' },
-    { name: 'Physical (Orthopedic)', icon: <Activity />, focus: 'Bone & Joint' },
+    { name: 'Non-visible Disability', icon: <Brain />, focus: 'Non-Apparent Disabilities' },
+    { name: 'Heart health', icon: <Heart />, focus: 'Heart related concerns' },
+    { name: 'Mother and Childcare', icon: <Baby />, focus: 'Nutrition & Educare' },
+    { name: 'Vaccines & Infections', icon: <ShieldCheck />, focus: 'TB, Rabies & EPI' },
+    { name: 'Reproductive/Sexual Health', icon: <Activity />, focus: 'Teen Wellness / FP' },
+    { name: 'Lung and Breathing', icon: <Activity />, focus: 'Respiratory' },
+    { name: 'Kidney Health', icon: <Droplets />, focus: 'Kidney & Dialysis' },
+    { name: 'Hearing & Ear Care', icon: <Ear />, focus: 'ENT Specialist' },
+    { name: 'Mental Health Support', icon: <MessageSquare />, focus: 'Psychiatry' },
+    { name: 'Physical (Bones and Joint) Health', icon: <Activity />, focus: 'Bone & Joint' },
     { name: 'Visual, Speech and Language', icon: <Eye />, focus: 'Eye & Speech' },
     { name: 'Intellectual & Learning Disabilities', icon: <Brain />, focus: 'SPED / Learning' },
     { name: 'Cancer Care', icon: <Activity />, focus: 'Oncology Center' },
-    { name: 'Skincare', icon: <Zap />, focus: 'Dermatology' },
+    { name: 'Skin & Dermatologist', icon: <Zap />, focus: 'Dermatology, Allergy' },
     { name: 'Rare Disease', icon: <Info />, focus: 'Specialized Care' }
   ];
 
   // Priority Services Grid
   const priorityServices = [
     { id: 'abc', name: 'Animal Bite Center', icon: <Dog />, subs: [], color: 'text-red-600 bg-red-50' },
-    { id: 'dental', name: 'Dentalcare', icon: <Smile />, subs: ['Oral prophylaxis', 'Braces', 'Extraction'], color: 'text-blue-600 bg-blue-50' },
+    { id: 'dental', name: 'Dental Care', icon: <Smile />, subs: [], desc: 'Oral prophylaxis, Braces, Extraction', color: 'text-blue-600 bg-blue-50' },
     { id: 'eye', name: 'Eyecare', icon: <Eye />, subs: ['Prescribed', 'Check-up'], color: 'text-emerald-600 bg-emerald-50' },
     { id: 'pwd', name: 'PWD Application', icon: <User />, subs: ["Requirements", "Benefits"], color: 'text-indigo-600 bg-indigo-50' }
   ];
@@ -62,7 +62,7 @@ const App = () => {
       id: 51, 
       name: "BMC Animal Bite Treatment Center", 
       personnel: "ABTC Medical Staff", 
-      specialty: "Infectious Disease & Vaccines", 
+      specialty: "Vaccines & Infections", 
       program: "Animal Bite Treatment (PEP & PrEP)", 
       facility: "Room B202, 2nd Floor, OPD Building, BMC", 
       contact: "(054) 472-6125", 
@@ -71,15 +71,15 @@ const App = () => {
       coverage: "Post-Exposure Prophylaxis (PEP): Emergency care for immediate rabies prevention after a bite. Pre-Exposure Prophylaxis (PrEP): Preventative vaccination for those at high risk.",
       keywords: ["pep", "prep", "rabies", "dog bite", "animal bite center", "vaccines"] 
     },
-    { id: 5, name: "CHO Naga - TB & Social Hygiene", personnel: "DOTS Team", specialty: "Infectious Disease & Vaccines", program: "TB Control (DOTS) / HIV STI Clinic", facility: "City Hall Complex", contact: "(054) 205-2980", hours: "M-F, 8 AM - 5 PM", rate: "Free Screening", keywords: ["infectious", "tb", "dots", "hiv", "sti", "vaccines"] },
-    { id: 53, name: "BMC Allergology Clinic", personnel: "Allergy Specialists", specialty: "Infectious Disease & Vaccines", program: "Sub-Specialty Allergology & Immunology", facility: "Room B105, OPD Building, BMC", contact: "(054) 472-6125", hours: "Wednesday, 8 AM - 12 NN", rate: "₱50.00 User Fee", keywords: ["immunology", "allergy", "allergology", "vaccines"] },
+    { id: 5, name: "CHO Naga - TB & Social Hygiene", personnel: "DOTS Team", specialty: "Vaccines & Infections", program: "TB Control (DOTS) / HIV STI Clinic", facility: "City Hall Complex", contact: "(054) 205-2980", hours: "M-F, 8 AM - 5 PM", rate: "Free Screening", keywords: ["infectious", "tb", "dots", "hiv", "sti", "vaccines"] },
+    { id: 53, name: "BMC Allergology Clinic", personnel: "Allergy Specialists", specialty: "Vaccines & Infections", program: "Sub-Specialty Allergology & Immunology", facility: "Room B105, OPD Building, BMC", contact: "(054) 472-6125", hours: "Wednesday, 8 AM - 12 NN", rate: "₱50.00 User Fee", keywords: ["immunology", "allergy", "allergology", "vaccines"] },
 
     // --- PULMONOLOGY ---
     { 
       id: 803, 
       name: "Bicol Medicine Center - Pulmonology", 
       personnel: "Adult & Pediatrics Pulmo Team", 
-      specialty: "Pulmonology", 
+      specialty: "Lung and Breathing", 
       program: "Sub-Specialty Clinic - Pulmonology", 
       facility: "Room B105 (Adult) / Room B106 (Pediatrics), BMC", 
       contact: "(054) 472-6125", 
@@ -90,12 +90,12 @@ const App = () => {
     },
 
     // --- MATERNAL, CHILDCARE & DAYCARE ---
-    { id: 3, name: "CPNO / CHO Naga", personnel: "Nutrition & FP Team", specialty: "Maternal and Childcare", program: "First 1,000 Days & Nutrition", facility: "G/F Naga City Nutrition Bldg., City Hall", contact: "(054) 871-2050", hours: "M-F, 8 AM - 5 PM", rate: "Socialized", keywords: ["maternal", "childcare", "nutrition", "prenatal", "family planning"] },
-    { id: 4, name: "Naga City SEED Montessori", personnel: "Ms. Jo Ann B. Zara", specialty: "Maternal and Childcare", program: "NEED / Educare (Daycare)", facility: "Barangay Tinago, Naga City", contact: "(054) 472-3723", hours: "AM Session: 7:30-11:30 | PM Session: 1:30-4:30", rate: "₱75 – ₱150 / Month", coverage: "Public Montessori daycare integrated with child health and ECCD monitoring.", keywords: ["daycare", "educare", "seed", "montessori", "childcare"] },
+    { id: 3, name: "CPNO / CHO Naga", personnel: "Nutrition & FP Team", specialty: "Mother and Childcare", program: "First 1,000 Days & Nutrition", facility: "G/F Naga City Nutrition Bldg., City Hall", contact: "(054) 871-2050", hours: "M-F, 8 AM - 5 PM", rate: "Socialized", keywords: ["maternal", "childcare", "nutrition", "prenatal", "family planning"] },
+    { id: 4, name: "Naga City SEED Montessori", personnel: "Ms. Jo Ann B. Zara", specialty: "Mother and Childcare", program: "NEED / Educare (Daycare)", facility: "Barangay Tinago, Naga City", contact: "(054) 472-3723", hours: "AM Session: 7:30-11:30 | PM Session: 1:30-4:30", rate: "₱75 – ₱150 / Month", coverage: "Public Montessori daycare integrated with child health and ECCD monitoring.", keywords: ["daycare", "educare", "seed", "montessori", "childcare"] },
 
     // --- NEPHROLOGY, UROLOGY & DIALYSIS ---
-    { id: 11, name: "BMC Renal & Urology Clinic", personnel: "Nephro Specialists", specialty: "Nephrology & Urology", program: "Renal Care Sub-specialty", facility: "Room B105 / B207, BMC", contact: "(054) 472-6125", hours: "Nephro: Mon/Fri AM, Tue PM | Urology: Tue-Thu PM", rate: "₱50.00 User Fee", keywords: ["nephrology", "urology", "kidney", "renal", "dialysis"] },
-    { id: 111, name: "BMC Dialysis Center", personnel: "Renal Replacement Team", specialty: "Nephrology & Urology", program: "Renal Care Center (Dialysis)", facility: "Renal Care Center Building, BMC", contact: "(054) 472-6125", hours: "Peritoneal: Mon AM | Hemodialysis: Scheduled Units", rate: "HD: ₱4,000 | Peritoneal: ₱1,200", keywords: ["dialysis", "hemodialysis", "peritoneal", "kidney"] },
+    { id: 11, name: "BMC Renal & Urology Clinic", personnel: "Nephro Specialists", specialty: "Kidney Health", program: "Renal Care Sub-specialty", facility: "Room B105 / B207, BMC", contact: "(054) 472-6125", hours: "Nephro: Mon/Fri AM, Tue PM | Urology: Tue-Thu PM", rate: "₱50.00 User Fee", keywords: ["nephrology", "urology", "kidney", "renal", "dialysis"] },
+    { id: 111, name: "BMC Dialysis Center", personnel: "Renal Replacement Team", specialty: "Kidney Health", program: "Renal Care Center (Dialysis)", facility: "Renal Care Center Building, BMC", contact: "(054) 472-6125", hours: "Peritoneal: Mon AM | Hemodialysis: Scheduled Units", rate: "HD: ₱4,000 | Peritoneal: ₱1,200", keywords: ["dialysis", "hemodialysis", "peritoneal", "kidney"] },
 
     // --- INTELLECTUAL & LEARNING DISABILITIES ---
     { 
@@ -112,22 +112,22 @@ const App = () => {
     },
 
     // --- PWD / NADs ---
-    { id: 1, name: "PDAO CSWDO", personnel: "Atty. Paul John Barrosa", specialty: "NADs (Non-Apparent Disabilities)", program: "Registration and Issuance of PWD ID", facility: "G/F Ako Bicol Bldg., City Hall Complex", contact: "(054) 473-3576", hours: "M-F, 8 AM - 5 PM", rate: "Free registration", keywords: ["pwd", "nads", "id application", "requirements", "benefits", "pwd application"] },
+    { id: 1, name: "PDAO CSWDO", personnel: "Atty. Paul John Barrosa", specialty: "Non-visible Disability", program: "Registration and Issuance of PWD ID", facility: "G/F Ako Bicol Bldg., City Hall Complex", contact: "(054) 473-3576", hours: "M-F, 8 AM - 5 PM", rate: "Free registration", keywords: ["pwd", "nads", "id application", "requirements", "benefits", "pwd application"] },
 
     // --- CARDIOLOGY ---
-    { id: 2, name: "BMC Cardiology Sub-Specialty", personnel: "BMC Heart Team", specialty: "Cardiology", program: "Cardiology Consultation & CP Clearance", facility: "Room B105, OPD Building, BMC", contact: "(054) 472-6125", hours: "Mon PM / Fri AM | Adult CP: Tue/Thu PM", rate: "₱50.00 User Fee", keywords: ["cardiology", "heart", "cp clearance", "stroke"] },
+    { id: 2, name: "BMC Cardiology Sub-Specialty", personnel: "BMC Heart Team", specialty: "Heart Health", program: "Cardiology Consultation & CP Clearance", facility: "Room B105, OPD Building, BMC", contact: "(054) 472-6125", hours: "Mon PM / Fri AM | Adult CP: Tue/Thu PM", rate: "₱50.00 User Fee", keywords: ["cardiology", "heart", "cp clearance", "stroke"] },
 
     // --- REPRODUCTIVE ---
-    { id: 9, name: "BMC Teen Wellness Center", personnel: "Wellness Team", specialty: "Reproductive", program: "AYRH and Family Planning", facility: "Room B110, OPD Building, BMC", contact: "(054) 472-6125", hours: "Mon-Fri, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["reproductive", "ayrh", "teen wellness", "family planning"] },
+    { id: 9, name: "BMC Teen Wellness Center", personnel: "Wellness Team", specialty: "Reproductive/Sexual Health", program: "AYRH and Family Planning", facility: "Room B110, OPD Building, BMC", contact: "(054) 472-6125", hours: "Mon-Fri, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["reproductive", "ayrh", "teen wellness", "family planning"] },
 
     // --- HEARING ---
-    { id: 13, name: "BMC Hearing Center", personnel: "ENT Specialists", specialty: "Hearing", program: "Newborn Hearing Screening", facility: "Room B205, BMC", contact: "(054) 472-6125", hours: "Mon PM | Tue-Fri AM", rate: "₱50.00 User Fee", keywords: ["hearing", "ear", "ent", "newborn"] },
+    { id: 13, name: "BMC Hearing Center", personnel: "ENT Specialists", specialty: "Hearing & Ear Care", program: "Newborn Hearing Screening", facility: "Room B205, BMC", contact: "(054) 472-6125", hours: "Mon PM | Tue-Fri AM", rate: "₱50.00 User Fee", keywords: ["hearing", "ear", "ent", "newborn"] },
 
     // --- MENTAL HEALTH ---
-    { id: 14, name: "BMC Psychiatry Center", personnel: "Mental Health Specialists", specialty: "Mental & Psychosocial", program: "Psychiatric Care & TMS", facility: "Don Susano Mental Hospital / BMC", contact: "(054) 472-6125", hours: "Adult: Mon-Thu (8-2 PM); Fri (8-12 NN)", rate: "Psych Test: ₱1,000 | TMS: ₱4,000", keywords: ["mental", "psychosocial", "psychiatry", "psychological"] },
+    { id: 14, name: "BMC Psychiatry Center", personnel: "Mental Health Specialists", specialty: "Mental Health Support", program: "Psychiatric Care & TMS", facility: "Don Susano Mental Hospital / BMC", contact: "(054) 472-6125", hours: "Adult: Mon-Thu (8-2 PM); Fri (8-12 NN)", rate: "Psych Test: ₱1,000 | TMS: ₱4,000", keywords: ["mental", "psychosocial", "psychiatry", "psychological"] },
 
     // --- PHYSICAL (ORTHOPEDIC) ---
-    { id: 15, name: "BMC Orthopedic Clinic", personnel: "Ortho Surgeons", specialty: "Physical (Orthopedic)", program: "Orthopedic Sub-Specialty", facility: "Room B111, OPD Building, BMC", contact: "(054) 472-6125", hours: "Spine: Friday | Sports: Thursday", rate: "Casting: ₱500 | Removal: ₱2,250", keywords: ["physical", "orthopedic", "spine", "fracture", "casting"] },
+    { id: 15, name: "BMC Orthopedic Clinic", personnel: "Ortho Surgeons", specialty: "Physical (Bones and Joint) Health", program: "Orthopedic Sub-Specialty", facility: "Room B111, OPD Building, BMC", contact: "(054) 472-6125", hours: "Spine: Friday | Sports: Thursday", rate: "Casting: ₱500 | Removal: ₱2,250", keywords: ["physical", "orthopedic", "spine", "fracture", "casting"] },
 
     // --- VISUAL & SPEECH ---
     { id: 16, name: "DOH-BMC Eye Care Center", personnel: "Ophthalmology Team", specialty: "Visual, Speech and Language", program: "Apex Eye Surgery & Clinic", facility: "BMC, J. Miranda Avenue", contact: "(054) 472-6125 loc 1305", hours: "Mon, Wed, Fri: 8 AM - 12 PM", rate: "Socialized", keywords: ["eye", "eyecare", "visual", "cataract", "check-up", "prescribed"] },
@@ -137,7 +137,7 @@ const App = () => {
     { id: 18, name: "BMC Regional Cancer Center", personnel: "Oncology Team", specialty: "Cancer Care", program: "Comprehensive Oncology Program", facility: "RCC Building, BMC", contact: "(054) 472-6125", hours: "M-F, 7 AM - 7 PM", rate: "Sub-specialty fees", keywords: ["cancer", "oncology", "chemo", "radiation"] },
 
     // --- SKINCARE ---
-    { id: 50, name: "BMC Dermatology Center", personnel: "Dr. Maria Lourdes Cruz-Sarmiento", specialty: "Skincare", program: "Comprehensive Dermatology", facility: "2nd Floor, Cardiac Bldg, BMC", contact: "(054) 472-6125 loc 1425", hours: "M-F, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["skincare", "skin", "dermatology consultation", "psoriasis"] },
+    { id: 50, name: "BMC Dermatology Center", personnel: "Dr. Maria Lourdes Cruz-Sarmiento", specialty: "Skin & Dermatologist", program: "Comprehensive Dermatology", facility: "2nd Floor, Cardiac Bldg, BMC", contact: "(054) 472-6125 loc 1425", hours: "M-F, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["skincare", "skin", "dermatology consultation", "psoriasis"] },
 
     // --- RARE DISEASE ---
     { id: 20, name: "BMC Rare Disease Sub-Specialty", personnel: "Endo & Neuro specialists", specialty: "Rare Disease", program: "Endocrinology & Neurology", facility: "Room B106 / B105, BMC", contact: "(054) 472-6125", hours: "Pedia Endo: Mon AM | Pedia Neuro: Thu PM", rate: "₱50.00 User Fee", keywords: ["rare disease", "endocrinology", "neurology", "diabetes"] },
