@@ -50,7 +50,7 @@ const App = () => {
   // Priority Services Grid
   const priorityServices = [
     { id: 'abc', name: 'Animal Bite Center', icon: <Dog />, subs: [], color: 'text-red-600 bg-red-50' },
-    { id: 'dental', name: 'Dental Care', icon: <Smile />, subs: ['Oral prophylaxis', 'Braces', 'Extraction'], desc: 'Mouth & Teeth', color: 'text-blue-600 bg-blue-50' },
+    { id: 'dental', name: 'Dental Care', icon: <Smile />, subs: ['Oral prophylaxis', 'Braces', 'Extraction'], desc: "Mouth & Teeth", color: 'text-blue-600 bg-blue-50' },
     { id: 'eye', name: 'Eyecare', icon: <Eye />, subs: ['Prescribed', 'Check-up'], color: 'text-emerald-600 bg-emerald-50' },
     { id: 'pwd', name: 'PWD Application', icon: <User />, subs: ["Requirements", "Benefits"], color: 'text-indigo-600 bg-indigo-50' }
   ];
