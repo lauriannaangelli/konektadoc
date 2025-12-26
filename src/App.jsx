@@ -7,7 +7,8 @@ import {
   Ear, Layers, Syringe, ClipboardList, BookOpen, ExternalLink,
   Plus, X, Filter, Navigation, Briefcase, Star,
   Settings, CreditCard, Bell, Shield, LogOut, QrCode, HeartPulse,
-  BadgeCheck, Pill
+  BadgeCheck, Pill, Gift, FileCheck,
+  Dna, Bean, Bone, Pencil, Ribbon, EyeOff
 } from 'lucide-react';
 
 const App = () => {
@@ -18,10 +19,17 @@ const App = () => {
   const [currentSubMenu, setCurrentSubMenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [selectedPurpose, setSelectedPurpose] = useState(null);
+  
+  // PWD Specific State
+  const [selectedPwdService, setSelectedPwdService] = useState(null);
+  
+  // State to track if images fail to load
+  const [logoError, setLogoError] = useState(false);
+  const [profileError, setProfileError] = useState(false);
 
   // Identity Assets
-  const logoSrc = "/favicon.ico";
-  const profilePicSrc = "[https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth](https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth)";
+  const logoSrc = "https://image2url.com/images/1766089700854-10185884-9154-477a-a9ad-13d52cba25a8.png?fbclid=IwY2xjawOxS_5leHRuA2FlbQIxMQBzcnRjBmFwcF9pZAEwAAEeEeJm5rBzmv6u1WQaYrCYFZ4nriDSCDVcoLk6Nxn1S0Xog3TCwQ3cK2y1yAc_aem_Ah9MJmavlG7JuYqzm5Em_w";
+  const profilePicSrc = "https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -29,7 +37,83 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // --- NEW: Medical History Data ---
+  // --- PWD Application Data ---
+  const pwdServicesList = [
+    { 
+      id: 'reg', 
+      title: 'PWD Registration', 
+      desc: 'Official registration for Persons with Disability to access government programs.', 
+      reqs: [
+        'Answered PWD Registration Form',
+        'One valid government ID',
+        'Medical certificate or disability confirmation by a licensed doctor or hospital'
+      ] 
+    },
+    { 
+      id: 'id', 
+      title: 'PWD ID Issuance', 
+      desc: 'Issuance of the official identification card for discounts and privileges.', 
+      reqs: [
+        '2 pc. of 1x1 ID picture with signature or thumbmark at the back',
+        '1 valid government ID',
+        'Medical certificate or disability confirmation by a licensed doctor or hospital',
+        'Completed PWD Registration Form'
+      ] 
+    },
+    { 
+      id: 'social', 
+      title: 'Social Welfare Assistance', 
+      desc: 'Financial and medical aid support for indigent PWDs.', 
+      reqs: [
+        'PWD ID',
+        'Valid government-issued ID',
+        'Medical certificate or clinical abstract',
+        'Barangay certificate of residency',
+        'Accomplished application form',
+        'Supporting documents depending on assistance type'
+      ] 
+    },
+    { 
+      id: 'train', 
+      title: 'Livelihood & Training', 
+      desc: 'Skills development and livelihood training programs.', 
+      reqs: [
+        'PWD ID',
+        'Valid government-issued ID',
+        'Medical certificate or clinical abstract',
+        'Barangay certificate of residency',
+        'Accomplished application form',
+        'Supporting documents depending on program type'
+      ] 
+    },
+    { 
+      id: 'rehab', 
+      title: 'Rehabilitation Services', 
+      desc: 'Access to physical therapy and mental health rehabilitation.', 
+      reqs: [
+        'PWD ID',
+        'Valid government-issued ID',
+        'Medical certificate or clinical abstract',
+        'Barangay certificate of residency',
+        'Accomplished application form',
+        'Physical Rehab: Therapy prescription or medical history',
+        'Assistive Devices: Quotation or request form (wheelchairs, crutches, hearing aids)',
+        'Psychosocial Rehab: Referral from psychologist, psychiatrist, or social worker'
+      ] 
+    }
+  ];
+
+  const pwdBenefitsList = [
+    '20% Discount on Medicines & Medical Services',
+    '20% Discount on Domestic Air & Sea Travel',
+    '20% Discount in Hotels, Restaurants & Recreation Centers',
+    'Educational Assistance / Scholarship Programs',
+    'Express Lanes in Government & Commercial Establishments',
+    'Tax Incentives for Caregivers / Guardians',
+    '5% Discount on Basic Necessities (Groceries)'
+  ];
+
+  // --- Medical History Data ---
   const historyPassport = [
     { label: 'Blood Type', value: 'O+', icon: <Droplets />, color: 'text-rose-500 bg-rose-50' },
     { label: 'Allergies', value: 'Seafood, Latex', icon: <AlertCircle />, color: 'text-amber-500 bg-amber-50' },
@@ -44,7 +128,7 @@ const App = () => {
     { date: 'Jan 22, 2025', condition: 'Booster Shot', facility: 'City Health Office', type: 'Vaccination', verified: true },
   ];
 
-  // --- NEW: Assistance Types for Help Screen ---
+  // --- Assistance Types ---
   const assistanceTypes = [
     { label: 'Financial Support', desc: 'Medical bills & surgery aid' },
     { label: 'Medicinal Care', desc: 'Prescription assistance' },
@@ -53,26 +137,26 @@ const App = () => {
     { label: 'General Inquiry', desc: 'Application process help' },
   ];
 
-  // 15 Consolidated Repository Categories - Verified Populated 
+  // Categories
   const repoCategories = [
-    { name: 'Non-visible Disability', icon: <Brain />, focus: 'Non-Apparent Disabilities' },
+    { name: 'Non-visible Disability', icon: <EyeOff />, focus: 'Non-Apparent Disabilities' },
     { name: 'Heart health', icon: <Heart />, focus: 'Heart related concerns' },
     { name: 'Mother and Childcare', icon: <Baby />, focus: 'Nutrition & Educare' },
     { name: 'Vaccines & Infections', icon: <ShieldCheck />, focus: 'TB, Rabies & EPI' },
-    { name: 'Reproductive/Sexual Health', icon: <Activity />, focus: 'Teen Wellness / FP' },
+    { name: 'Reproductive/Sexual Health', icon: <Dna />, focus: 'Teen Wellness / FP' },
     { name: 'Lung and Breathing', icon: <Activity />, focus: 'Respiratory' },
-    { name: 'Kidney Health', icon: <Droplets />, focus: 'Kidney & Dialysis' },
+    { name: 'Kidney Health', icon: <Bean />, focus: 'Kidney & Dialysis' },
     { name: 'Hearing & Ear Care', icon: <Ear />, focus: 'ENT Specialist' },
-    { name: 'Mental Health Support', icon: <MessageSquare />, focus: 'Psychiatry' },
-    { name: 'Physical (Bones and Joint) Health', icon: <Activity />, focus: 'Bone & Joint' },
+    { name: 'Mental Health Support', icon: <Brain />, focus: 'Psychiatry' },
+    { name: 'Physical (Bones and Joint) Health', icon: <Bone />, focus: 'Bone & Joint' },
     { name: 'Visual, Speech and Language', icon: <Eye />, focus: 'Eye & Speech' },
-    { name: 'Intellectual & Learning Disabilities', icon: <Brain />, focus: 'SPED / Learning' },
-    { name: 'Cancer Care', icon: <Activity />, focus: 'Oncology Center, chemotherapy' },
+    { name: 'Intellectual & Learning Disabilities', icon: <Pencil />, focus: 'SPED / Learning' },
+    { name: 'Cancer Care', icon: <Ribbon />, focus: 'Oncology Center, chemotherapy' },
     { name: 'Skin & Dermatologist', icon: <Zap />, focus: 'Dermatology, Allergy' },
     { name: 'Rare Disease', icon: <Info />, focus: 'Specialized Care' }
   ];
 
-  // Priority Services Grid
+  // Priority Services
   const priorityServices = [
     { id: 'abc', name: 'Animal Bite Center', icon: <Dog />, subs: [], color: 'text-red-600 bg-red-50' },
     { id: 'dental', name: 'Dental Care', icon: <Smile />, subs: ['Oral prophylaxis', 'Braces', 'Extraction'], desc: "Mouth & Teeth", color: 'text-blue-600 bg-blue-50' },
@@ -80,9 +164,8 @@ const App = () => {
     { id: 'pwd', name: 'PWD Application', icon: <User />, subs: ["Requirements", "Benefits"], color: 'text-indigo-600 bg-indigo-50' }
   ];
 
-  // MASTER CONSOLIDATED DATABASE - RETAINING ALL INFORMATION
+  // Database
   const facilityData = [
-    // --- INFECTIOUS DISEASE, IMMUNOLOGY & VACCINES (Includes PEP/PrEP Meanings) ---
     { 
       id: 51, 
       name: "BMC Animal Bite Treatment Center", 
@@ -98,8 +181,6 @@ const App = () => {
     },
     { id: 5, name: "CHO Naga - TB & Social Hygiene", personnel: "DOTS Team", specialty: "Vaccines & Infections", program: "TB Control (DOTS) / HIV STI Clinic", facility: "City Hall Complex", contact: "(054) 205-2980", hours: "M-F, 8 AM - 5 PM", rate: "Free Screening", keywords: ["infectious", "tb", "dots", "hiv", "sti", "vaccines"] },
     { id: 53, name: "BMC Allergology Clinic", personnel: "Allergy Specialists", specialty: "Vaccines & Infections", program: "Sub-Specialty Allergology & Immunology", facility: "Room B105, OPD Building, BMC", contact: "(054) 472-6125", hours: "Wednesday, 8 AM - 12 NN", rate: "₱50.00 User Fee", keywords: ["immunology", "allergy", "allergology", "vaccines"] },
-
-    // --- PULMONOLOGY ---
     { 
       id: 803, 
       name: "Bicol Medicine Center - Pulmonology", 
@@ -113,20 +194,14 @@ const App = () => {
       coverage: "Specialist care for lung diseases, chronic asthma, and respiratory diagnostics.",
       keywords: ["pulmonology", "respiratory", "lung", "asthma", "pulmo"] 
     },
-
-    // --- MATERNAL, CHILDCARE & DAYCARE ---
     { id: 3, name: "CPNO / CHO Naga", personnel: "Nutrition & FP Team", specialty: "Mother and Childcare", program: "First 1,000 Days & Nutrition", facility: "G/F Naga City Nutrition Bldg., City Hall", contact: "(054) 871-2050", hours: "M-F, 8 AM - 5 PM", rate: "Socialized", keywords: ["maternal", "childcare", "nutrition", "prenatal", "family planning"] },
-    { id: 4, name: "Naga City SEED Montessori", personnel: "Mx. Juan Dela Cruz", specialty: "Mother and Childcare", program: "NEED / Educare (Daycare)", facility: "Barangay Tinago, Naga City", contact: "(054) 472-3723", hours: "AM Session: 7:30-11:30 | PM Session: 1:30-4:30", rate: "₱75 – ₱150 / Month", coverage: "Public Montessori daycare integrated with child health and ECCD monitoring.", keywords: ["daycare", "educare", "seed", "montessori", "childcare"] },
-
-    // --- NEPHROLOGY, UROLOGY & DIALYSIS ---
+    { id: 4, name: "Naga City SEED Montessori", personnel: "Ms. Maria Clara", specialty: "Mother and Childcare", program: "NEED / Educare (Daycare)", facility: "Barangay Tinago, Naga City", contact: "(054) 472-3723", hours: "AM Session: 7:30-11:30 | PM Session: 1:30-4:30", rate: "₱75 – ₱150 / Month", coverage: "Public Montessori daycare integrated with child health and ECCD monitoring.", keywords: ["daycare", "educare", "seed", "montessori", "childcare"] },
     { id: 11, name: "BMC Renal & Urology Clinic", personnel: "Nephro Specialists", specialty: "Kidney Health", program: "Renal Care Sub-specialty", facility: "Room B105 / B207, BMC", contact: "(054) 472-6125", hours: "Nephro: Mon/Fri AM, Tue PM | Urology: Tue-Thu PM", rate: "₱50.00 User Fee", keywords: ["nephrology", "urology", "kidney", "renal", "dialysis"] },
     { id: 111, name: "BMC Dialysis Center", personnel: "Renal Replacement Team", specialty: "Kidney Health", program: "Renal Care Center (Dialysis)", facility: "Renal Care Center Building, BMC", contact: "(054) 472-6125", hours: "Peritoneal: Mon AM | Hemodialysis: Scheduled Units", rate: "HD: ₱4,000 | Peritoneal: ₱1,200", keywords: ["dialysis", "hemodialysis", "peritoneal", "kidney"] },
-
-    // --- INTELLECTUAL & LEARNING DISABILITIES ---
     { 
       id: 17, 
       name: "BMC Child Psych / Pedia Neuro", 
-      personnel: "Dr. Romano & Dr. Nocario", 
+      personnel: "Dr. Miggy Montenegro", 
       specialty: "Intellectual & Learning Disabilities", 
       program: "Child Psychiatry & Pediatric Neurology", 
       facility: "Room B106 (Pediatrics), BMC", 
@@ -135,40 +210,18 @@ const App = () => {
       rate: "₱50.00 User's Fee", 
       keywords: ["intellectual", "learning", "adhd", "autism", "down syndrome", "developmental"] 
     },
-
-    // --- PWD / NADs ---
     { id: 1, name: "PDAO CSWDO", personnel: "Atty. Juan Tamad", specialty: "Non-visible Disability", program: "Registration and Issuance of PWD ID", facility: "G/F Ako Bicol Bldg., City Hall Complex", contact: "(054) 473-3576", hours: "M-F, 8 AM - 5 PM", rate: "Free registration", keywords: ["pwd", "nads", "id application", "requirements", "benefits", "pwd application"] },
-
-    // --- CARDIOLOGY ---
     { id: 2, name: "BMC Cardiology Sub-Specialty", personnel: "BMC Heart Team", specialty: "Heart Health", program: "Cardiology Consultation & CP Clearance", facility: "Room B105, OPD Building, BMC", contact: "(054) 472-6125", hours: "Mon PM / Fri AM | Adult CP: Tue/Thu PM", rate: "₱50.00 User Fee", keywords: ["cardiology", "heart", "cp clearance", "stroke"] },
-
-    // --- REPRODUCTIVE ---
     { id: 9, name: "BMC Teen Wellness Center", personnel: "Wellness Team", specialty: "Reproductive/Sexual Health", program: "AYRH and Family Planning", facility: "Room B110, OPD Building, BMC", contact: "(054) 472-6125", hours: "Mon-Fri, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["reproductive", "ayrh", "teen wellness", "family planning"] },
-
-    // --- HEARING ---
     { id: 13, name: "BMC Hearing Center", personnel: "ENT Specialists", specialty: "Hearing & Ear Care", program: "Newborn Hearing Screening", facility: "Room B205, BMC", contact: "(054) 472-6125", hours: "Mon PM | Tue-Fri AM", rate: "₱50.00 User Fee", keywords: ["hearing", "ear", "ent", "newborn"] },
-
-    // --- MENTAL HEALTH ---
     { id: 14, name: "BMC Psychiatry Center", personnel: "Mental Health Specialists", specialty: "Mental Health Support", program: "Psychiatric Care & TMS", facility: "Don Susano Mental Hospital / BMC", contact: "(054) 472-6125", hours: "Adult: Mon-Thu (8-2 PM); Fri (8-12 NN)", rate: "Psych Test: ₱1,000 | TMS: ₱4,000", keywords: ["mental", "psychosocial", "psychiatry", "psychological"] },
-
-    // --- PHYSICAL (ORTHOPEDIC) ---
     { id: 15, name: "BMC Orthopedic Clinic", personnel: "Ortho Surgeons", specialty: "Physical (Bones and Joint) Health", program: "Orthopedic Sub-Specialty", facility: "Room B111, OPD Building, BMC", contact: "(054) 472-6125", hours: "Spine: Friday | Sports: Thursday", rate: "Casting: ₱500 | Removal: ₱2,250", keywords: ["physical", "orthopedic", "spine", "fracture", "casting"] },
-
-    // --- VISUAL & SPEECH ---
-    { id: 16, name: "DOH-BMC Eye Care Center", personnel: "Ophthalmology doctor", specialty: "Visual, Speech and Language", program: "Apex Eye Surgery & Clinic", facility: "BMC, J. Miranda Avenue", contact: "(054) 472-6125 loc 1305", hours: "Mon, Wed, Fri: 8 AM - 12 PM", rate: "Socialized", keywords: ["eye", "eyecare", "visual", "cataract", "check-up", "prescribed"] },
+    { id: 16, name: "DOH-BMC Eye Care Center", personnel: "Ophthalmology Team", specialty: "Visual, Speech and Language", program: "Apex Eye Surgery & Clinic", facility: "BMC, J. Miranda Avenue", contact: "(054) 472-6125 loc 1305", hours: "Mon, Wed, Fri: 8 AM - 12 PM", rate: "Socialized", keywords: ["eye", "eyecare", "visual", "cataract", "check-up", "prescribed"] },
     { id: 161, name: "Angels Ladder Speech Therapy", personnel: "SLP Specialists", specialty: "Visual, Speech and Language", program: "Specialized Speech Pathology", facility: "Jimenez Subd, Naga City", contact: "0912-0064902", hours: "By Appointment", rate: "Private Fee", keywords: ["speech", "language", "therapy", "pathology"] },
-
-    // --- CANCER CARE ---
-    { id: 18, name: "BMC Regional Cancer Center", personnel: "Oncology doctor", specialty: "Cancer Care", program: "Comprehensive Oncology Program", facility: "RCC Building, BMC", contact: "(054) 472-6125", hours: "M-F, 7 AM - 7 PM", rate: "Sub-specialty fees", keywords: ["cancer", "oncology", "chemo", "radiation"] },
-
-    // --- SKINCARE ---
-    { id: 50, name: "BMC Dermatology Center", personnel: "Dr. Miggy Montenegro", specialty: "Skin & Dermatologist", program: "Comprehensive Dermatology", facility: "2nd Floor, Cardiac Bldg, BMC", contact: "(054) 472-6125 loc 1425", hours: "M-F, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["skincare", "skin", "dermatology consultation", "psoriasis"] },
-
-    // --- RARE DISEASE ---
+    { id: 18, name: "BMC Regional Cancer Center", personnel: "Oncology Team", specialty: "Cancer Care", program: "Comprehensive Oncology Program", facility: "RCC Building, BMC", contact: "(054) 472-6125", hours: "M-F, 7 AM - 7 PM", rate: "Sub-specialty fees", keywords: ["cancer", "oncology", "chemo", "radiation"] },
+    { id: 50, name: "BMC Dermatology Center", personnel: "Dr. Popoy Gonzales", specialty: "Skin & Dermatologist", program: "Comprehensive Dermatology", facility: "2nd Floor, Cardiac Bldg, BMC", contact: "(054) 472-6125 loc 1425", hours: "M-F, 8 AM - 5 PM", rate: "₱50.00 User Fee", keywords: ["skincare", "skin", "dermatology consultation", "psoriasis"] },
     { id: 20, name: "BMC Rare Disease Sub-Specialty", personnel: "Endo & Neuro specialists", specialty: "Rare Disease", program: "Endocrinology & Neurology", facility: "Room B106 / B105, BMC", contact: "(054) 472-6125", hours: "Pedia Endo: Mon AM | Pedia Neuro: Thu PM", rate: "₱50.00 User Fee", keywords: ["rare disease", "endocrinology", "neurology", "diabetes"] },
-
-    // --- DENTALCARE ---
-    { id: 40, name: "BMC Dental Clinic", personnel: "Dr. Popoy Gonzales", specialty: "Dental Care", program: "Hospital Dentistry", facility: "Room B208, BMC", contact: "(054) 472-3307", hours: "M-F: 8 AM-5 PM", rate: "Extraction: ₱900 | Prophylaxis: ₱1,400", keywords: ["dentalcare", "extraction", "oral prophylaxis", "braces"] }
+    { id: 40, name: "BMC Dental Clinic", personnel: "Dr. Bobbie Salazar", specialty: "Dental Care", program: "Hospital Dentistry", facility: "Room B208, BMC", contact: "(054) 472-3307", hours: "M-F: 8 AM-5 PM", rate: "Extraction: ₱900 | Prophylaxis: ₱1,400", keywords: ["dentalcare", "extraction", "oral prophylaxis", "braces"] }
   ];
 
   const filteredFacilities = useMemo(() => {
@@ -187,6 +240,26 @@ const App = () => {
     setSelectedFacility(null);
     setCurrentSubMenu(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSubMenuClick = (catId, subName) => {
+    if (catId === 'pwd') {
+      if (subName === 'Requirements') {
+        setActiveTab('pwd_requirements');
+        setSelectedPwdService(null);
+        setCurrentSubMenu(null);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (subName === 'Benefits') {
+        setActiveTab('pwd_benefits');
+        setCurrentSubMenu(null);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Fallback if there are other subs
+        handleServiceClick(subName);
+      }
+    } else {
+      handleServiceClick(subName);
+    }
   };
 
   const renderHome = () => (
@@ -230,7 +303,7 @@ const App = () => {
               {currentSubMenu === cat.id && cat.subs.length > 0 && (
                 <div className="absolute top-full left-0 right-0 mt-2 z-20 flex flex-col gap-2 p-2 bg-white rounded-[1.5rem] shadow-2xl border border-blue-50 animate-in slide-in-from-top-2 duration-300">
                   {cat.subs.map(sub => (
-                    <button key={sub} onClick={() => handleServiceClick(sub)} className="w-full text-left p-3.5 bg-slate-50 hover:bg-blue-600 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-tight transition-all">{sub}</button>
+                    <button key={sub} onClick={() => handleSubMenuClick(cat.id, sub)} className="w-full text-left p-3.5 bg-slate-50 hover:bg-blue-600 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-tight transition-all">{sub}</button>
                   ))}
                 </div>
               )}
@@ -247,6 +320,119 @@ const App = () => {
         </div>
         <ChevronRight className="text-white/40 group-hover:translate-x-1 transition-transform" />
       </button>
+    </div>
+  );
+
+  const renderPwdRequirements = () => {
+    if (selectedPwdService) {
+      // Detail View for a specific PWD service
+      return (
+        <div className="space-y-6 animate-in slide-in-from-right duration-400 pb-28">
+          <div className="flex items-center gap-3 px-2">
+            <button onClick={() => setSelectedPwdService(null)} className="p-3 bg-white rounded-full text-slate-400 shadow-sm border border-slate-100 hover:text-blue-600 transition-colors">
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <h2 className="text-xl font-black text-slate-800 uppercase tracking-tight leading-none">{selectedPwdService.title}</h2>
+          </div>
+
+          <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 space-y-6">
+            <p className="text-xs font-bold text-slate-500 leading-relaxed border-b border-slate-50 pb-4">{selectedPwdService.desc}</p>
+            
+            <div>
+              <h3 className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-3">Requirements Checklist</h3>
+              <ul className="space-y-3">
+                {selectedPwdService.reqs.map((req, i) => (
+                  <li key={i} className="flex items-start gap-3 p-3 bg-slate-50 rounded-2xl">
+                    <FileCheck className="w-4 h-4 text-indigo-500 mt-0.5 shrink-0" />
+                    <span className="text-[11px] font-bold text-slate-700">{req}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-2">
+              <button 
+                onClick={() => {
+                  const pdaoData = facilityData.find(f => f.id === 1);
+                  if (pdaoData) {
+                    setSelectedFacility(pdaoData);
+                    setActiveTab('repo');
+                  }
+                }}
+                className="w-full py-4 bg-indigo-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 active:scale-95 transition-all"
+              >
+                <Info className="w-4 h-4" /> View PDAO Facility Details
+              </button>
+              <p className="text-[9px] text-center text-slate-400 mt-3 font-bold">Check office hours, location, and fees.</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // List View for PWD Services
+    return (
+      <div className="space-y-6 animate-in slide-in-from-right duration-400 pb-28">
+        <div className="flex items-center gap-3 px-2">
+          <button onClick={() => setActiveTab('home')} className="p-3 bg-white rounded-full text-slate-400 shadow-sm border border-slate-100 hover:text-blue-600 transition-colors">
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <div>
+            <h2 className="text-xl font-black text-slate-800 uppercase tracking-tight">PWD Requirements</h2>
+            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Select Service Type</p>
+          </div>
+        </div>
+
+        <div className="grid gap-3">
+          {pwdServicesList.map((service) => (
+            <button 
+              key={service.id} 
+              onClick={() => setSelectedPwdService(service)}
+              className="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm text-left hover:border-indigo-200 transition-all group active:scale-[0.98]"
+            >
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[10px] font-black text-indigo-600 uppercase tracking-widest">Service</span>
+                <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-500" />
+              </div>
+              <h3 className="text-sm font-black text-slate-800 mb-1">{service.title}</h3>
+              <p className="text-[10px] text-slate-400 font-bold line-clamp-1">{service.desc}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const renderPwdBenefits = () => (
+    <div className="space-y-6 animate-in slide-in-from-right duration-400 pb-28">
+      <div className="flex items-center gap-3 px-2">
+        <button onClick={() => setActiveTab('home')} className="p-3 bg-white rounded-full text-slate-400 shadow-sm border border-slate-100 hover:text-blue-600 transition-colors">
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+        <div>
+          <h2 className="text-xl font-black text-slate-800 uppercase tracking-tight">PWD Benefits</h2>
+          <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Privileges & Discounts</p>
+        </div>
+      </div>
+
+      <div className="bg-indigo-600 p-8 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden">
+        <div className="relative z-10">
+          <h3 className="text-lg font-black uppercase tracking-tight">Know Your Rights</h3>
+          <p className="text-[10px] opacity-80 font-bold mt-1 max-w-[80%]">Republic Act 10754 - Expanding the Benefits and Privileges of Persons with Disability.</p>
+        </div>
+        <Gift className="absolute -bottom-6 -right-6 w-32 h-32 text-white/10 rotate-12" />
+      </div>
+
+      <div className="space-y-3">
+        {pwdBenefitsList.map((benefit, i) => (
+          <div key={i} className="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm flex gap-4 items-start">
+            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl shrink-0">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
+            <p className="text-xs font-bold text-slate-700 leading-relaxed pt-0.5">{benefit}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 
@@ -463,19 +649,36 @@ const App = () => {
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center border-2 border-white/20 p-1 overflow-hidden relative group">
                 <HeartPulse className="absolute w-7 h-7 text-blue-600 z-0" />
-                <img 
-                  src={logoSrc} 
-                  alt="KD" 
-                  className="absolute inset-0 w-full h-full object-cover z-10 bg-white" 
-                  onError={(e) => { e.target.style.opacity = 0; }} 
-                />
+                {!logoError ? (
+                  <img 
+                    src={logoSrc} 
+                    alt="KD" 
+                    className="absolute inset-0 w-full h-full object-cover z-10 bg-white" 
+                    onError={() => setLogoError(true)} 
+                  />
+                ) : (
+                  <div className="absolute inset-0 z-10 bg-white flex items-center justify-center">
+                    <HeartPulse className="w-6 h-6 text-blue-600" />
+                  </div>
+                )}
               </div>
               <div><h2 className="text-lg font-black tracking-tight leading-none uppercase">Naga Citizen</h2><p className="text-[10px] opacity-60 font-black uppercase tracking-widest mt-1">Health & Wellness ID</p></div>
             </div>
             <QrCode className="w-10 h-10 text-white/40" />
           </div>
           <div className="flex gap-4">
-            <div className="w-20 h-20 rounded-2xl border-2 border-white/20 overflow-hidden shadow-inner"><img src={profilePicSrc} alt="User" /></div>
+            <div className="w-20 h-20 rounded-2xl border-2 border-white/20 overflow-hidden shadow-inner bg-slate-200 flex items-center justify-center">
+              {!profileError ? (
+                <img 
+                  src={profilePicSrc} 
+                  alt="User" 
+                  className="w-full h-full object-cover" 
+                  onError={(e) => { e.target.style.display='none'; setProfileError(true); }} 
+                />
+              ) : (
+                <User className="w-10 h-10 text-slate-400" />
+              )}
+            </div>
             <div className="flex-1 space-y-1 py-1">
               <p className="text-xl font-black tracking-tight uppercase">Juan Dela Cruz</p>
               <p className="text-[10px] font-black uppercase tracking-widest text-blue-400">ID: NAG-2025-0891</p>
@@ -516,19 +719,36 @@ const App = () => {
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center border p-1 overflow-hidden relative group">
             <HeartPulse className="absolute w-7 h-7 text-blue-600 z-0" />
-            <img 
-              src={logoSrc} 
-              alt="KD" 
-              className="absolute inset-0 w-full h-full object-cover z-10 bg-white" 
-              onError={(e) => { e.target.style.opacity = 0; }} 
-            />
+            {!logoError ? (
+              <img 
+                src={logoSrc} 
+                alt="KD" 
+                className="absolute inset-0 w-full h-full object-cover z-10 bg-white" 
+                onError={() => setLogoError(true)} 
+              />
+            ) : (
+              <div className="absolute inset-0 z-10 bg-white flex items-center justify-center">
+                <HeartPulse className="w-6 h-6 text-blue-600" />
+              </div>
+            )}
           </div>
           <div>
             <h1 className="font-black text-xl leading-none tracking-tight uppercase tracking-tight">Konekta<span className="text-blue-600 font-black">doc</span></h1>
             <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mt-1">An Maogmang Lugar</p>
           </div>
         </div>
-        <div onClick={() => setActiveTab('me')} className="w-11 h-11 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full border-2 border-white shadow-lg overflow-hidden ring-4 ring-blue-50/50 cursor-pointer active:scale-90 transition-transform"><img src={profilePicSrc} alt="profile" /></div>
+        <div onClick={() => setActiveTab('me')} className="w-11 h-11 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full border-2 border-white shadow-lg overflow-hidden ring-4 ring-blue-50/50 cursor-pointer active:scale-90 transition-transform flex items-center justify-center bg-slate-200">
+          {!profileError ? (
+             <img 
+               src={profilePicSrc} 
+               alt="profile" 
+               className="w-full h-full object-cover" 
+               onError={(e) => { e.target.style.display='none'; setProfileError(true); }} 
+             />
+          ) : (
+             <User className="w-6 h-6 text-slate-500" />
+          )}
+        </div>
       </header>
 
       <main className="px-6 pt-4 pb-32">
@@ -537,6 +757,8 @@ const App = () => {
         {activeTab === 'help' && renderHelp()}
         {activeTab === 'me' && renderMe()}
         {activeTab === 'history' && renderMedicalHistory()}
+        {activeTab === 'pwd_requirements' && renderPwdRequirements()}
+        {activeTab === 'pwd_benefits' && renderPwdBenefits()}
       </main>
 
       <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/95 backdrop-blur-xl border-t border-slate-100 px-10 py-7 flex justify-between items-center z-50 shadow-[0_-15px_50px_rgba(0,0,0,0.08)] rounded-t-[3.5rem]">
@@ -547,7 +769,7 @@ const App = () => {
       </nav>
 
       <style>{`
-        @import url('[https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap)');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         :root { font-family: 'Plus Jakarta Sans', sans-serif; }
         @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-in { animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
