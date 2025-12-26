@@ -42,7 +42,7 @@ const App = () => {
     { name: 'Physical (Bones and Joint) Health', icon: <Activity />, focus: 'Bone & Joint' },
     { name: 'Visual, Speech and Language', icon: <Eye />, focus: 'Eye & Speech' },
     { name: 'Intellectual & Learning Disabilities', icon: <Brain />, focus: 'SPED / Learning' },
-    { name: 'Cancer Care', icon: <Activity />, focus: 'Oncology Center' },
+    { name: 'Cancer Care', icon: <Activity />, focus: 'Oncology Center, chemotherapy' },
     { name: 'Skin & Dermatologist', icon: <Zap />, focus: 'Dermatology, Allergy' },
     { name: 'Rare Disease', icon: <Info />, focus: 'Specialized Care' }
   ];
