@@ -143,7 +143,7 @@ const App = () => {
     { id: 20, name: "BMC Rare Disease Sub-Specialty", personnel: "Endo & Neuro specialists", specialty: "Rare Disease", program: "Endocrinology & Neurology", facility: "Room B106 / B105, BMC", contact: "(054) 472-6125", hours: "Pedia Endo: Mon AM | Pedia Neuro: Thu PM", rate: "₱50.00 User Fee", keywords: ["rare disease", "endocrinology", "neurology", "diabetes"] },
 
     // --- DENTALCARE ---
-    { id: 40, name: "BMC Dental Clinic", personnel: "Dr. Eric V. Pabico", specialty: "Dentalcare", program: "Hospital Dentistry", facility: "Room B208, BMC", contact: "(054) 472-3307", hours: "M-F: 8 AM-5 PM", rate: "Extraction: ₱900 | Prophylaxis: ₱1,400", keywords: ["dentalcare", "extraction", "oral prophylaxis", "braces"] }
+    { id: 40, name: "BMC Dental Clinic", personnel: "Dr. Eric V. Pabico", specialty: "Dental Care", program: "Hospital Dentistry", facility: "Room B208, BMC", contact: "(054) 472-3307", hours: "M-F: 8 AM-5 PM", rate: "Extraction: ₱900 | Prophylaxis: ₱1,400", keywords: ["dentalcare", "extraction", "oral prophylaxis", "braces"] }
   ];
 
   const filteredFacilities = useMemo(() => {
