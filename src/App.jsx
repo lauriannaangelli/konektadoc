@@ -27,8 +27,8 @@ const App = () => {
   const [logoError, setLogoError] = useState(false);
   const [profileError, setProfileError] = useState(false);
 
-  // Identity Assets
-  const logoSrc = "https://image2url.com/images/1766089700854-10185884-9154-477a-a9ad-13d52cba25a8.png?fbclid=IwY2xjawOxS_5leHRuA2FlbQIxMQBzcnRjBmFwcF9pZAEwAAEeEeJm5rBzmv6u1WQaYrCYFZ4nriDSCDVcoLk6Nxn1S0Xog3TCwQ3cK2y1yAc_aem_Ah9MJmavlG7JuYqzm5Em_w";
+ // Identity Assets
+  const logoSrc = "/favicon.ico";
   const profilePicSrc = "https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth";
 
   useEffect(() => {
