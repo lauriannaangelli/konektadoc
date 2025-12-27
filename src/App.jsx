@@ -28,7 +28,7 @@ const App = () => {
   const [profileError, setProfileError] = useState(false);
 
  // Identity Assets
-  const logoSrc = "/favicon.ico";
+  const logoSrc = "/favicon.ico?v=2";
   const profilePicSrc = "https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth";
 
   useEffect(() => {
