@@ -8,7 +8,7 @@ import {
   Plus, X, Filter, Navigation, Briefcase, Star,
   Settings, CreditCard, Bell, Shield, LogOut, QrCode, HeartPulse,
   BadgeCheck, Pill, Gift, FileCheck,
-  Dna, Bean, Bone, Pencil, Ribbon, EyeOff
+  Dna, Bean, Bone, Pencil, Ribbon, EyeOff, Wind, Sun, Languages
 } from 'lucide-react';
 
 const App = () => {
@@ -27,7 +27,8 @@ const App = () => {
   const [logoError, setLogoError] = useState(false);
   const [profileError, setProfileError] = useState(false);
 
- // Identity Assets
+  // Identity Assets
+  // Uses local favicon with cache buster
   const logoSrc = "/favicon.ico?v=2";
   const profilePicSrc = "https://api.dicebear.com/7.x/avataaars/svg?seed=NagaHealth";
 
@@ -37,7 +38,9 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // --- PWD Application Data ---
+  // --- DATA DEFINITIONS ---
+
+  // PWD Application Data
   const pwdServicesList = [
     { 
       id: 'reg', 
@@ -113,7 +116,7 @@ const App = () => {
     '5% Discount on Basic Necessities (Groceries)'
   ];
 
-  // --- Medical History Data ---
+  // Medical History Data
   const historyPassport = [
     { label: 'Blood Type', value: 'O+', icon: <Droplets />, color: 'text-rose-500 bg-rose-50' },
     { label: 'Allergies', value: 'Seafood, Latex', icon: <AlertCircle />, color: 'text-amber-500 bg-amber-50' },
@@ -128,7 +131,7 @@ const App = () => {
     { date: 'Jan 22, 2025', condition: 'Booster Shot', facility: 'City Health Office', type: 'Vaccination', verified: true },
   ];
 
-  // --- Assistance Types ---
+  // Assistance Types
   const assistanceTypes = [
     { label: 'Financial Support', desc: 'Medical bills & surgery aid' },
     { label: 'Medicinal Care', desc: 'Prescription assistance' },
@@ -137,23 +140,23 @@ const App = () => {
     { label: 'General Inquiry', desc: 'Application process help' },
   ];
 
-  // Categories
+  // Categories with Colors & New Icons
   const repoCategories = [
-    { name: 'Non-visible Disability', icon: <EyeOff />, focus: 'Non-Apparent Disabilities' },
-    { name: 'Heart health', icon: <Heart />, focus: 'Heart related concerns' },
-    { name: 'Mother and Childcare', icon: <Baby />, focus: 'Nutrition & Educare' },
-    { name: 'Vaccines & Infections', icon: <ShieldCheck />, focus: 'TB, Rabies & EPI' },
-    { name: 'Reproductive/Sexual Health', icon: <Dna />, focus: 'Teen Wellness / FP' },
-    { name: 'Lung and Breathing', icon: <Activity />, focus: 'Respiratory' },
-    { name: 'Kidney Health', icon: <Bean />, focus: 'Kidney & Dialysis' },
-    { name: 'Hearing & Ear Care', icon: <Ear />, focus: 'ENT Specialist' },
-    { name: 'Mental Health Support', icon: <Brain />, focus: 'Psychiatry' },
-    { name: 'Physical (Bones and Joint) Health', icon: <Bone />, focus: 'Bone & Joint' },
-    { name: 'Visual, Speech and Language', icon: <Eye />, focus: 'Eye & Speech' },
-    { name: 'Intellectual & Learning Disabilities', icon: <Pencil />, focus: 'SPED / Learning' },
-    { name: 'Cancer Care', icon: <Ribbon />, focus: 'Oncology Center, chemotherapy' },
-    { name: 'Skin & Dermatologist', icon: <Zap />, focus: 'Dermatology, Allergy' },
-    { name: 'Rare Disease', icon: <Info />, focus: 'Specialized Care' }
+    { name: 'Non-visible Disability', icon: <EyeOff />, focus: 'Non-Apparent Disabilities', color: 'text-violet-600 bg-violet-50' },
+    { name: 'Heart health', icon: <Heart />, focus: 'Heart related concerns', color: 'text-rose-600 bg-rose-50' },
+    { name: 'Mother and Childcare', icon: <Baby />, focus: 'Nutrition & Educare', color: 'text-pink-600 bg-pink-50' },
+    { name: 'Vaccines & Infections', icon: <ShieldCheck />, focus: 'TB, Rabies & EPI', color: 'text-emerald-600 bg-emerald-50' },
+    { name: 'Reproductive/Sexual Health', icon: <Ribbon />, focus: 'Teen Wellness / FP', color: 'text-fuchsia-600 bg-fuchsia-50' },
+    { name: 'Lung and Breathing', icon: <Wind />, focus: 'Respiratory', color: 'text-cyan-600 bg-cyan-50' },
+    { name: 'Kidney Health', icon: <Bean />, focus: 'Kidney & Dialysis', color: 'text-amber-600 bg-amber-50' },
+    { name: 'Hearing & Ear Care', icon: <Ear />, focus: 'ENT Specialist', color: 'text-teal-600 bg-teal-50' },
+    { name: 'Mental Health Support', icon: <Brain />, focus: 'Psychiatry', color: 'text-indigo-600 bg-indigo-50' },
+    { name: 'Physical (Bones and Joint) Health', icon: <Bone />, focus: 'Bone & Joint', color: 'text-orange-600 bg-orange-50' },
+    { name: 'Visual, Speech and Language', icon: <Languages />, focus: 'Eye & Speech', color: 'text-blue-600 bg-blue-50' },
+    { name: 'Intellectual & Learning Disabilities', icon: <Pencil />, focus: 'SPED / Learning', color: 'text-yellow-600 bg-yellow-50' },
+    { name: 'Cancer Care', icon: <Dna />, focus: 'Oncology Center, chemotherapy', color: 'text-purple-600 bg-purple-50' },
+    { name: 'Skin & Dermatologist', icon: <Sun />, focus: 'Dermatology, Allergy', color: 'text-red-600 bg-red-50' },
+    { name: 'Rare Disease', icon: <Info />, focus: 'Specialized Care', color: 'text-lime-600 bg-lime-50' }
   ];
 
   // Priority Services
@@ -164,7 +167,7 @@ const App = () => {
     { id: 'pwd', name: 'PWD Application', icon: <User />, subs: ["Requirements", "Benefits"], color: 'text-indigo-600 bg-indigo-50' }
   ];
 
-  // Database
+  // Facility Database
   const facilityData = [
     { 
       id: 51, 
@@ -224,6 +227,8 @@ const App = () => {
     { id: 40, name: "BMC Dental Clinic", personnel: "Dr. Bobbie Salazar", specialty: "Dental Care", program: "Hospital Dentistry", facility: "Room B208, BMC", contact: "(054) 472-3307", hours: "M-F: 8 AM-5 PM", rate: "Extraction: ₱900 | Prophylaxis: ₱1,400", keywords: ["dentalcare", "extraction", "oral prophylaxis", "braces"] }
   ];
 
+  // --- Logic Helpers ---
+
   const filteredFacilities = useMemo(() => {
     const query = searchQuery.toLowerCase();
     if (!query) return [];
@@ -261,6 +266,8 @@ const App = () => {
       handleServiceClick(subName);
     }
   };
+
+  // --- Render Functions ---
 
   const renderHome = () => (
     <div className="space-y-8 pb-24 animate-in fade-in duration-500">
@@ -320,6 +327,97 @@ const App = () => {
         </div>
         <ChevronRight className="text-white/40 group-hover:translate-x-1 transition-transform" />
       </button>
+    </div>
+  );
+
+  const renderRepo = () => (
+    <div className="space-y-6 animate-in slide-in-from-right duration-400 pb-28">
+      {!selectedFacility && (
+        <div className="sticky top-[84px] z-20 bg-slate-50/90 backdrop-blur-md py-3 -mx-6 px-6">
+          <div className="relative group">
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-blue-500 transition-colors" />
+            <input type="text" placeholder="Search categories, services, or room numbers..." className="w-full pl-14 pr-12 py-5 bg-white border-2 border-slate-100 rounded-[2rem] shadow-sm focus:ring-4 focus:ring-blue-100 outline-none text-sm font-bold transition-all" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+            {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-5 top-1/2 -translate-y-1/2 p-1 bg-slate-100 rounded-full text-slate-400 hover:text-slate-600"><X className="w-3.5 h-3.5" /></button>}
+          </div>
+        </div>
+      )}
+
+      {selectedFacility ? (
+        <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-blue-50 space-y-7 animate-in zoom-in-95 duration-300">
+          <button onClick={() => setSelectedFacility(null)} className="flex items-center gap-2 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:text-blue-600 transition-colors"><ArrowLeft className="w-4 h-4" /> Go Back</button>
+          <div className="space-y-1">
+            <p className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em]">{selectedFacility.program}</p>
+            <h2 className="text-2xl font-black text-slate-900 leading-tight">{selectedFacility.name}</h2>
+            <div className="flex items-center gap-2 text-slate-600 font-bold text-xs pt-1"><User className="w-4 h-4 text-blue-500" /> {selectedFacility.personnel}</div>
+          </div>
+          <div className="grid gap-3">
+             <div className="w-full flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-blue-500 shadow-sm">
+                <Clock className="w-5 h-5 text-blue-600 mt-1" />
+                <div><p className="text-[9px] text-slate-400 uppercase font-black mb-1">Clinic/Service Hours</p><p className="text-xs font-black text-slate-800">{selectedFacility.hours}</p></div>
+             </div>
+             <div className="w-full flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-blue-500 shadow-sm">
+                <MapPin className="w-5 h-5 text-blue-600 mt-1" />
+                <div><p className="text-[9px] text-slate-400 uppercase font-black mb-1">Facility Location</p><p className="text-xs font-black text-slate-800">{selectedFacility.facility}</p></div>
+             </div>
+             <div className="w-full flex items-start gap-4 p-4 bg-blue-50/50 rounded-2xl border-l-4 border-blue-400 shadow-sm">
+                <Info className="w-5 h-5 text-blue-500 mt-1" />
+                <div><p className="text-[9px] text-blue-400 uppercase font-black mb-1">Coverage / Status</p><p className="text-[10px] font-bold text-slate-600 leading-tight">{selectedFacility.coverage || "Verified Konektadoc Service"}</p></div>
+             </div>
+             <div className="w-full flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-emerald-500 shadow-sm">
+                <Thermometer className="w-5 h-5 text-emerald-600 mt-1" />
+                <div><p className="text-[9px] text-slate-400 uppercase font-black mb-1">Fees / Rate</p><p className="text-xs font-black text-emerald-600 uppercase tracking-tight">{selectedFacility.rate}</p></div>
+             </div>
+          </div>
+          <a href={`tel:${selectedFacility.contact.replace(/\D/g, '')}`} className="w-full bg-blue-700 text-white py-5 rounded-[2rem] font-black uppercase tracking-widest shadow-2xl active:scale-95 transition-all text-xs flex items-center justify-center gap-3">
+            <Phone className="w-5 h-5" /> Contact Center
+          </a>
+        </div>
+      ) : (
+        <div className="space-y-6">
+          {searchQuery === '' && (
+            <div className="grid grid-cols-2 gap-3">
+              {repoCategories.map((repo, i) => (
+                <button key={i} onClick={() => handleServiceClick(repo.name)} className="flex flex-col items-center gap-3 p-5 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:border-blue-200 active:bg-blue-600 active:text-white transition-all text-center group">
+                  <div className={`p-4 rounded-2xl group-hover:bg-blue-100 transition-colors ${repo.color}`}>{React.cloneElement(repo.icon, { className: "w-7 h-7" })}</div>
+                  <div>
+                    <span className="text-[10px] font-black text-slate-800 uppercase tracking-tight block group-active:text-white leading-tight">{repo.name}</span>
+                    <span className="text-[8px] text-slate-400 font-bold group-active:text-blue-100 uppercase tracking-widest">{repo.focus}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+          {searchQuery !== '' && (
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 px-1 mb-4">
+                <button onClick={() => setSearchQuery('')} className="p-2 bg-slate-100 rounded-full text-slate-400"><X className="w-4 h-4" /></button>
+                <h3 className="text-[11px] font-black text-slate-800 uppercase tracking-widest">Results for "{searchQuery}"</h3>
+              </div>
+              <div className="grid gap-3">
+                {filteredFacilities.length > 0 ? (
+                  filteredFacilities.map(fac => (
+                    <button key={fac.id} onClick={() => setSelectedFacility(fac)} className="bg-white p-6 rounded-[2.5rem] border border-slate-100 flex justify-between items-center hover:border-blue-200 shadow-sm transition-all text-left active:scale-[0.98]">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 transition-colors duration-300"><Stethoscope className="w-6 h-6" /></div>
+                        <div>
+                          <p className="text-[8px] font-black text-blue-600 uppercase tracking-widest mb-1">{fac.specialty}</p>
+                          <p className="font-black text-slate-800 text-sm leading-tight">{fac.name}</p>
+                        </div>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-slate-200" />
+                    </button>
+                  ))
+                ) : (
+                  <div className="text-center py-20 bg-white rounded-[3rem] border-2 border-dashed border-slate-100">
+                    <Search className="w-14 h-14 text-slate-200 mx-auto mb-5" />
+                    <p className="text-slate-500 font-black text-xs uppercase tracking-widest">No matching results found</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 
@@ -433,97 +531,6 @@ const App = () => {
           </div>
         ))}
       </div>
-    </div>
-  );
-
-  const renderRepo = () => (
-    <div className="space-y-6 animate-in slide-in-from-right duration-400 pb-28">
-      {!selectedFacility && (
-        <div className="sticky top-[84px] z-20 bg-slate-50/90 backdrop-blur-md py-3 -mx-6 px-6">
-          <div className="relative group">
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-blue-500 transition-colors" />
-            <input type="text" placeholder="Search categories, services, or room numbers..." className="w-full pl-14 pr-12 py-5 bg-white border-2 border-slate-100 rounded-[2rem] shadow-sm focus:ring-4 focus:ring-blue-100 outline-none text-sm font-bold transition-all" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-            {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-5 top-1/2 -translate-y-1/2 p-1 bg-slate-100 rounded-full text-slate-400 hover:text-slate-600"><X className="w-3.5 h-3.5" /></button>}
-          </div>
-        </div>
-      )}
-
-      {selectedFacility ? (
-        <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-blue-50 space-y-7 animate-in zoom-in-95 duration-300">
-          <button onClick={() => setSelectedFacility(null)} className="flex items-center gap-2 text-slate-400 text-[10px] font-black uppercase tracking-widest hover:text-blue-600 transition-colors"><ArrowLeft className="w-4 h-4" /> Go Back</button>
-          <div className="space-y-1">
-            <p className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em]">{selectedFacility.program}</p>
-            <h2 className="text-2xl font-black text-slate-900 leading-tight">{selectedFacility.name}</h2>
-            <div className="flex items-center gap-2 text-slate-600 font-bold text-xs pt-1"><User className="w-4 h-4 text-blue-500" /> {selectedFacility.personnel}</div>
-          </div>
-          <div className="grid gap-3">
-             <div className="w-full flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-blue-500 shadow-sm">
-                <Clock className="w-5 h-5 text-blue-600 mt-1" />
-                <div><p className="text-[9px] text-slate-400 uppercase font-black mb-1">Clinic/Service Hours</p><p className="text-xs font-black text-slate-800">{selectedFacility.hours}</p></div>
-             </div>
-             <div className="w-full flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-blue-500 shadow-sm">
-                <MapPin className="w-5 h-5 text-blue-600 mt-1" />
-                <div><p className="text-[9px] text-slate-400 uppercase font-black mb-1">Facility Location</p><p className="text-xs font-black text-slate-800">{selectedFacility.facility}</p></div>
-             </div>
-             <div className="w-full flex items-start gap-4 p-4 bg-blue-50/50 rounded-2xl border-l-4 border-blue-400 shadow-sm">
-                <Info className="w-5 h-5 text-blue-500 mt-1" />
-                <div><p className="text-[9px] text-blue-400 uppercase font-black mb-1">Coverage / Status</p><p className="text-[10px] font-bold text-slate-600 leading-tight">{selectedFacility.coverage || "Verified Konektadoc Service"}</p></div>
-             </div>
-             <div className="w-full flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-emerald-500 shadow-sm">
-                <Thermometer className="w-5 h-5 text-emerald-600 mt-1" />
-                <div><p className="text-[9px] text-slate-400 uppercase font-black mb-1">Fees / Rate</p><p className="text-xs font-black text-emerald-600 uppercase tracking-tight">{selectedFacility.rate}</p></div>
-             </div>
-          </div>
-          <a href={`tel:${selectedFacility.contact.replace(/\D/g, '')}`} className="w-full bg-blue-700 text-white py-5 rounded-[2rem] font-black uppercase tracking-widest shadow-2xl active:scale-95 transition-all text-xs flex items-center justify-center gap-3">
-            <Phone className="w-5 h-5" /> Contact Center
-          </a>
-        </div>
-      ) : (
-        <div className="space-y-6">
-          {searchQuery === '' && (
-            <div className="grid grid-cols-2 gap-3">
-              {repoCategories.map((repo, i) => (
-                <button key={i} onClick={() => handleServiceClick(repo.name)} className="flex flex-col items-center gap-3 p-5 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:border-blue-200 active:bg-blue-600 active:text-white transition-all text-center group">
-                  <div className="text-blue-500 bg-blue-50 p-4 rounded-2xl group-hover:bg-blue-100 transition-colors">{React.cloneElement(repo.icon, { className: "w-7 h-7" })}</div>
-                  <div>
-                    <span className="text-[10px] font-black text-slate-800 uppercase tracking-tight block group-active:text-white leading-tight">{repo.name}</span>
-                    <span className="text-[8px] text-slate-400 font-bold group-active:text-blue-100 uppercase tracking-widest">{repo.focus}</span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          )}
-          {searchQuery !== '' && (
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 px-1 mb-4">
-                <button onClick={() => setSearchQuery('')} className="p-2 bg-slate-100 rounded-full text-slate-400"><X className="w-4 h-4" /></button>
-                <h3 className="text-[11px] font-black text-slate-800 uppercase tracking-widest">Results for "{searchQuery}"</h3>
-              </div>
-              <div className="grid gap-3">
-                {filteredFacilities.length > 0 ? (
-                  filteredFacilities.map(fac => (
-                    <button key={fac.id} onClick={() => setSelectedFacility(fac)} className="bg-white p-6 rounded-[2.5rem] border border-slate-100 flex justify-between items-center hover:border-blue-200 shadow-sm transition-all text-left active:scale-[0.98]">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 transition-colors duration-300"><Stethoscope className="w-6 h-6" /></div>
-                        <div>
-                          <p className="text-[8px] font-black text-blue-600 uppercase tracking-widest mb-1">{fac.specialty}</p>
-                          <p className="font-black text-slate-800 text-sm leading-tight">{fac.name}</p>
-                        </div>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-slate-200" />
-                    </button>
-                  ))
-                ) : (
-                  <div className="text-center py-20 bg-white rounded-[3rem] border-2 border-dashed border-slate-100">
-                    <Search className="w-14 h-14 text-slate-200 mx-auto mb-5" />
-                    <p className="text-slate-500 font-black text-xs uppercase tracking-widest">No matching results found</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 
@@ -717,7 +724,7 @@ const App = () => {
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 max-w-md mx-auto relative shadow-2xl overflow-x-hidden border-x border-slate-100">
       <header className={`sticky top-0 z-50 px-6 py-5 flex items-center justify-between transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-xl shadow-md border-b border-slate-100' : 'bg-white'}`}>
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center border p-1 overflow-hidden relative group">
+          <div className="w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center border-2 border-white/20 p-1 overflow-hidden relative group">
             <HeartPulse className="absolute w-7 h-7 text-blue-600 z-0" />
             {!logoError ? (
               <img 
