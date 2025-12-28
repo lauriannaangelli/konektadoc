@@ -115,7 +115,7 @@ const App = () => {
 
   // --- Medical History Data ---
   const historyPassport = [
-    { label: 'Blood Type', value: 'O+', icon: <Droplets />, color: 'text-rose-500 bg-rose-50' },
+    { label: 'Blood Type', value: 'B+', icon: <Droplets />, color: 'text-rose-500 bg-rose-50' },
     { label: 'Allergies', value: 'Seafood, Latex', icon: <AlertCircle />, color: 'text-amber-500 bg-amber-50' },
     { label: 'Chronic', value: 'Hypertension', icon: <Activity />, color: 'text-blue-500 bg-blue-50' },
     { label: 'Organ Donor', value: 'Yes', icon: <Heart />, color: 'text-emerald-500 bg-emerald-50' },
